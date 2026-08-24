@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+
+  jpa:
+    hibernate:
+      # 'validate' only checks the schema matches the entities - it never
+      # mutates production tables. Real schema changes go through migration
+      # tools (Flyway/Liquibase), introduced later once the schema stabilizes.
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+
+logging:
+  level:
+    com.diregebeya.backend: INFO
+    org.hibernate.SQL: WARN

@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/diregebeya}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # 'update' is convenient in dev: Hibernate auto-adjusts the schema
+      # as entities change, so we don't hand-write migrations yet.
+      # NEVER use 'update' or 'create' in production - see application-prod.yml.
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        '[jdbc.time_zone]': UTC
+    open-in-view: false
+
+logging:
+  level:
+    com.diregebeya.backend: DEBUG
+    org.hibernate.SQL: DEBUG
